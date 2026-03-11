@@ -2,8 +2,12 @@ import numpy as np
 from collections import deque
 
 class bfs:
-    def __init__(self):
-        pass
+    def __init__(self,start, end, inversion):
+        self.start_row = start[0]
+        self.start_col = start[1]
+        self.end_row = end[0]
+        self.end_col = end[1]
+        self.inverted = inversion
 
     def bfs(self, matrix, start_index, end_index):
         n = len(matrix)
@@ -52,26 +56,14 @@ class bfs:
         with open("adj_matrix.txt", "r") as file:
             lines = file.readlines()
 
-        if lines:
-            inverted = lines.pop()
-            last_line = lines.pop()
-            start_line= lines.pop()
-            
 
-        with open("adj_matrix.txt", "w") as file:
-            file.writelines(lines)
 
         matrix = np.loadtxt("adj_matrix.txt", delimiter=",", dtype=int)
 
-        start_row, start_col = start_line.split(", ")
-        end_row, end_col = last_line.split(", ")
-        start_row = int(start_row)
-        start_col = int(start_col)
-        end_row = int(end_row)
-        end_col = int(end_col)
 
-        start_index = self.coord_to_index(start_row, start_col)
-        end_index = self.coord_to_index(end_row, end_col)
+
+        start_index = self.coord_to_index(self.start_row, self.start_col)
+        end_index = self.coord_to_index(self.end_row, self.end_col)
 
         path = self.bfs(matrix, start_index, end_index)
         path = self.convert_path(path)
@@ -83,4 +75,4 @@ class bfs:
                     line += " "
                 line += "\n"
                 file.writelines(line)
-            file.write(inverted)
+            file.write(str(self.inverted) + "\n")

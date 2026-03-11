@@ -24,10 +24,8 @@ robot = Robot()
 
 rotation = 0  
 
-
 robot_row = 0       
 robot_col = 0
-
 
 inverted = False
 global_rotation = 0
@@ -233,30 +231,30 @@ robot.step(TIME_STEP)
 if not MAPPED:
 
     dfs()
-    #Write out data to file 
+    #Write out the adj matrix to a file
     with open("adj_matrix.txt", "w") as file:
         for row in graph:
             line = ",".join(str(x) for x in row) 
             file.write(line + "\n")
-        file.write(f'{0}, {0}\n')
-        file.write(f'{end[0]}, {end[1]}\n')
-        if inverted:
-            file.write("T")
-        else:
-            file.write("F")
-
-
-    search = bfs()
+    #Pass the start and end coords into bfs as tuples
+    #Also pass in if we need to invert
+    search = bfs((0,0),(end[0], end[1]), inverted)
+    #Run the optimization algo 
     search.run()
 
 else:
+    #Tracks if we need to invert the y coords 
     mult = 1
     coord_path = []
+    #Read in the path 
     with open("path.txt", "r") as file:
         lines = file.readlines()
+    #Pop the inversion off the end of the text file 
     var = lines.pop()
-    if var == "T":
+    #Check if we need inversion 
+    if var == "True\n":
         mult = -1
+    #Read the rest of the lines, removing some of the formating 
     for line in lines:
         line = line.strip() 
         if line:
@@ -264,7 +262,7 @@ else:
             coord_path.append((int(x_str), int(y_str)))
                 
     
-               
+    #Find of next tile offset from where we are           
     differences = []
     for i in range(len(coord_path) - 1):
         x1, y1 = coord_path[i]
@@ -272,8 +270,9 @@ else:
         dx = x2 - x1
         dy = y2 - y1
         differences.append((dx, dy))
-
+    #Default distance is one tile 
     dist = .25
+    #Hard coded turning
     for i in range(len(differences)):
         if i == len(differences) - 1:
             dist = 2
@@ -301,8 +300,7 @@ else:
                 move_dist(dist,True)
             elif global_rotation == 270:
                 turn(-90)
-                move_dist(dist,True)
-            
+                move_dist(dist,True)  
         if y == 1 * mult:
             if global_rotation == 0:
                 turn(90)
@@ -328,7 +326,7 @@ else:
                 move_dist(dist,True)
             elif global_rotation == 270:
                 move_dist(dist,True)
-        
+    #Delete the path file   
     if file_path.exists():
         file_path.unlink()
         

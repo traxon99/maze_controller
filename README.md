@@ -41,7 +41,7 @@ Make sure the controller is set to:
 
 epuck_go_forward
 Running the Simulation
-1. Run the Mapping Phase
+Mapping Phase
 
 Press the Play button.
 
@@ -55,15 +55,16 @@ Map all 36 tiles
 
 Return back to the starting position
 
-2. Reset the Simulation
+Reset the Simulation
 
 After mapping finishes:
 
-Click the Reset Simulation button (two icons to the left of the Play button).
+Click the Reset Simulation button
+(two icons to the left of the Play button).
 
 Press Play again.
 
-3. Run the Solving Phase
+Solving Phase
 
 After resetting and pressing play again, the robot will:
 

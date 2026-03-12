@@ -98,3 +98,4 @@ The backup controller provides a simplified navigation behavior and can be used 
 - Ensure the controller is set correctly before starting the simulation
 - If the robot does not move, confirm that the `controllers` folder was replaced properly
 - Always reset the simulation before running the solving phase
+- You **MUST** run a full mapping (all 36 tiles) before each solve, do not reset simulation until mapping or solve is **FULLY** completed

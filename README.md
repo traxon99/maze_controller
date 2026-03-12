@@ -65,7 +65,7 @@ After resetting and pressing **Play** again, the robot will:
 - Compute the optimal route
 - Solve the maze from start to finish
 
-## Backup Controller (If Problems Occur)
+## Backup Controller (**ONLY** If Problems Occur)
 
 If the `epuck_go_forward` controller fails to load or the robot does not move correctly, a backup controller can be used.
 

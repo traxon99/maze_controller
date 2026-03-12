@@ -1,4 +1,4 @@
-# Team RonBot – e-puck Maze Controller
+# Team RonBot | e-puck Maze Controller
 
 This guide explains how to run the **Team RonBot e-puck controller** in **Webots** for the maze competition.
 

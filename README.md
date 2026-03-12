@@ -92,6 +92,7 @@ The backup controller provides a simplified navigation behavior and can be used 
 
 - **First Run:** Robot explores and maps the maze
 - **Second Run:** Robot uses the map to solve the maze efficiently
+- **Backup:** Wall-Follow Oversimplified Backup to be used if all else fails
 
 ## Notes
 

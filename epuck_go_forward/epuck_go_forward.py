@@ -229,6 +229,28 @@ def green_wall(camera):
     return not sum(pixels) <= 25
 
 
+# ------------------- Startup Reorientation -------------------
+
+# If the robot starts facing a wall, rotate in 90-degree steps until an open path is found.
+def reorient_if_facing_wall():
+    robot.step(TIME_STEP)
+
+    if not front_wall(camera):
+        return
+
+    print("Robot started facing a wall. Reorienting...")
+
+    for _ in range(4):
+        turn(90)
+        robot.step(TIME_STEP)
+
+        if not front_wall(camera):
+            print("Open direction found. Continuing.")
+            return
+
+    print("Warning: robot could not find an open direction.")
+
+
 # ------------------- DFS Mapping -------------------
 
 # DFS explores the maze, builds the graph, and records the green goal tile.
@@ -370,6 +392,7 @@ def run_race_path(coord_path, mult):
 # ------------------- Main Controller Logic -------------------
 
 robot.step(TIME_STEP)
+reorient_if_facing_wall()
 
 if not MAPPED:
     dfs()

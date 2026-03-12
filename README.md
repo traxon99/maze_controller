@@ -17,7 +17,7 @@ Setup Instructions
 
 Open the Team_RonBot folder.
 
-Extract the controller folder.
+Extract the controllers folder.
 
 Navigate to your Webots project directory.
 
@@ -40,7 +40,8 @@ In the left sidebar, locate the Controller field.
 Make sure the controller is set to:
 
 epuck_go_forward
-4. Run the Mapping Phase
+Running the Simulation
+1. Run the Mapping Phase
 
 Press the Play button.
 
@@ -54,7 +55,7 @@ Map all 36 tiles
 
 Return back to the starting position
 
-5. Reset the Simulation
+2. Reset the Simulation
 
 After mapping finishes:
 
@@ -62,7 +63,7 @@ Click the Reset Simulation button (two icons to the left of the Play button).
 
 Press Play again.
 
-6. Run the Solving Phase
+3. Run the Solving Phase
 
 After resetting and pressing play again, the robot will:
 
@@ -72,14 +73,36 @@ Compute the optimal route
 
 Solve the maze from start to finish
 
+Backup Controller (If Problems Occur)
+
+If the epuck_go_forward controller fails to load or the robot does not move correctly, a backup controller can be used.
+
+Steps
+
+Click the e-puck robot in the scene tree.
+
+In the Controller field on the left sidebar, change the controller from:
+
+epuck_go_forward
+
+to the backup controller:
+
+epuck_backup
+
+Press Play to start the simulation again.
+
+The backup controller provides a simplified navigation behavior and can be used for testing or troubleshooting if the main controller encounters issues.
+
 Expected Behavior
 
-First run: robot explores and maps the maze.
+First Run: Robot explores and maps the maze.
 
-Second run: robot uses the map to solve the maze efficiently.
+Second Run: Robot uses the map to solve the maze efficiently.
 
 Notes
 
-Make sure the controller is set to epuck_go_forward before starting the simulation.
+Ensure the controller is set correctly before starting the simulation.
 
-If the robot does not move, confirm that the controller folder was replaced correctly.
+If the robot does not move, confirm that the controllers folder was replaced properly.
+
+Always reset the simulation before running the solving phase.
